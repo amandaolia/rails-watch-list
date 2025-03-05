@@ -1,0 +1,24 @@
+<div class="cinema" id="main-banner">
+</div>
+
+<div class="container mt-3">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="font-weight-bold text-light">Cinematheque</h1>
+    <%= link_to "New list", new_list_path, class: "btn btn-warning" %>
+  </div>
+
+  <div class="row">
+    <% @lists.each do |list| %>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-lg border-light" >
+          <div class="card-body">
+            <h5 class="card-title font-weight-bold text-light"><%= list.name %></h5>
+            <p class="card-text"><%= pluralize(list.movies.count, 'movie') %></p>
+            <%= link_to "View Movies", list_path(list), class: "btn btn-light btn-sm mr-2" %>
+            <%= link_to "Delete", list_path(list), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
